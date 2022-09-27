@@ -5,7 +5,7 @@ public class AULA_TESTE {
 		// TODO Auto-generated method stub
 		
 		System.out.println("teste")
-
+		System.out.println("teste2")
 	}
 
 }
