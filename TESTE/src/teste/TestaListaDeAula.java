@@ -14,6 +14,10 @@ public class TestaListaDeAula {
         aulas.add(a3);
 
         System.out.println(aulas);
+<<<<<<< HEAD
         System.out.println(aulas2);
+=======
+       
+>>>>>>> refs/heads/branch_1
     }
 }
