@@ -14,5 +14,6 @@ public class TestaListaDeAula {
         aulas.add(a3);
 
         System.out.println(aulas);
+        System.out.println(aulas2);
     }
 }
