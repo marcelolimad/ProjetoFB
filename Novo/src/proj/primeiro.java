@@ -1,6 +1,6 @@
 package proj;
 
-import java.swing.JOptionPane*;
+
 
 public class primeiro {
 	
