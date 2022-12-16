@@ -168,8 +168,13 @@ public class Alu {
 	}
 		public String getAluAprovado2() {
 			double media = this.getMediaNota();
-			if (media >= 70) {
-				return "Aprovado";
+			if (media >= 50) {
+				if(media >= 70) {
+					return "Aprovado";
+				}else {
+					return "recuperação";
+				}
+				
 			}else {
 				return "Reprovado";
 			}

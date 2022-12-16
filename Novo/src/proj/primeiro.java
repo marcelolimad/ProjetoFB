@@ -13,7 +13,7 @@ public class primeiro {
 		double qtdpessoas = Double.parseDouble(pessoas);
 		double qtddocumentos = Double.parseDouble(documentos);
 		
-		int div = (int) ( qtddocumentos / qtdpessoas);
+		int div = (int) ( qtddocumentos / qtdpessoas); 
 		
 		double resto = qtddocumentos % qtdpessoas;
 		
