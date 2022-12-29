@@ -2,6 +2,9 @@ package primeiro_classe_pack;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import primeiro_classe_pack.constantes.StatusAlu;
+
 import java.util.*;
 
 public class Alu {
@@ -170,13 +173,13 @@ public class Alu {
 			double media = this.getMediaNota();
 			if (media >= 50) {
 				if(media >= 70) {
-					return "Aprovado";
+					return StatusAlu.APROVADO;
 				}else {
-					return "recuperação";
+					return StatusAlu.RECUPERACAO;
 				}
 				
 			}else {
-				return "Reprovado";
+				return StatusAlu.REPROVADO;
 			}
 		
 	}

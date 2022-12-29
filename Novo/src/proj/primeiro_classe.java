@@ -1,18 +1,29 @@
 package proj;
 
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import primeiro_classe_pack.Alu;
 import primeiro_classe_pack.Disciplina;
+import primeiro_classe_pack.constantes.StatusAlu;
 
 public class primeiro_classe {
 	
 	public static void main (String[]args) {
 		
-		List<Alu> alunos = new ArrayList<>();
+		List<Alu> alunos = new ArrayList<Alu>();
+		
+		HashMap<String, List<Alu>> maps = new HashMap<String, List<Alu>>();
+		
+		
+		/*List<Alu> alunosAprovados = new ArrayList<Alu>();
+		List<Alu> alunosReprovado = new ArrayList<Alu>();
+		List<Alu> alunosRecuperacao = new ArrayList<Alu>();*/
+		
 		
 		for (int qtd = 1 ; qtd <=3; qtd++) {
  		
@@ -107,7 +118,75 @@ public class primeiro_classe {
 		alunos.add(alu2);
 	}
 		
+		maps.put(StatusAlu.APROVADO,new ArrayList<Alu>());
+		maps.put(StatusAlu.RECUPERACAO,new ArrayList<Alu>());
+		maps.put(StatusAlu.REPROVADO,new ArrayList<Alu>());
+		
 		for (Alu alu2 : alunos) {
+			
+			if (alu2.getAluAprovado2().equalsIgnoreCase(StatusAlu.APROVADO)) {
+				maps.get(StatusAlu.APROVADO).add(alu2);
+				
+			}else if (alu2.getAluAprovado2().equalsIgnoreCase(StatusAlu.RECUPERACAO)) {
+				maps.get(StatusAlu.RECUPERACAO).add(alu2);
+				
+			}else  {
+				maps.get(StatusAlu.REPROVADO).add(alu2); /*Alunos reprovados*/
+			}
+		}
+		
+		System.out.println("-----------------Lista dos Aprovados------------------");
+		for (Alu alu2 : maps.get(StatusAlu.APROVADO)) {
+			System.out.println("Nome "+ alu2.getNome() + " Resultado = " + alu2.getAluAprovado2() + " com média de " + alu2.getMediaNota());
+		}
+		
+		System.out.println("-----------------Lista dos Recuperação------------------");
+		for (Alu alu2 : maps.get(StatusAlu.RECUPERACAO)) {
+			System.out.println("Nome "+ alu2.getNome() + " Resultado = " + alu2.getAluAprovado2() + " com média de " + alu2.getMediaNota());
+		}
+		
+		System.out.println("-----------------Lista dos Reprovados------------------");
+		for (Alu alu2 : maps.get(StatusAlu.REPROVADO)) {
+			System.out.println("Nome "+ alu2.getNome() + " Resultado = " + alu2.getAluAprovado2() + " com média de " + alu2.getMediaNota());
+		}
+		
+		/*for (int pos = 0; pos < alunos.size(); pos ++) {
+			
+			Alu alu2 = alunos.get(pos);
+		
+			if(alu2.getNome().equalsIgnoreCase("Marcelo")) {
+				
+				Alu trocar = new Alu();
+				trocar.setNome("Aluno trocado para: Fulano");
+				
+				Disciplina disciplina = new Disciplina();
+				disciplina.setDisciplina("css");
+				disciplina.setNota(70);
+				
+				trocar.getDisciplinas().add(disciplina);
+				
+				alunos.set(pos, trocar);
+				alu2 = alunos.get(pos);
+				
+			}
+			
+			System.out.println(pos);
+			System.out.println("Aluno = " + alu2.getNome());
+			System.out.println("Media do aluno =" + alu2.getMediaNota());
+			System.out.println("Resultado = " + alu2.getAluAprovado2());
+			System.out.println("--------------------------------------------");
+			
+			for(int posd = 0; posd < alu2.getDisciplinas().size(); posd ++) {
+				
+				Disciplina disc = alu2.getDisciplinas().get(posd);
+				System.out.println (" Materia " + disc.getDisciplina() + " Nota = " + disc.getNota());
+			}
+			
+			
+		}
+		
+		
+		/*for (Alu alu2 : alunos) {
 			
 			if (alu2.getNome().equalsIgnoreCase("priscila")) {
 	          alunos.remove(alu2);
