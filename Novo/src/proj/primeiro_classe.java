@@ -15,6 +15,13 @@ public class primeiro_classe {
 	
 	public static void main (String[]args) {
 		
+		String login = JOptionPane.showInputDialog( "Qual é o Login");
+		
+		String senha = JOptionPane.showInputDialog( "Qual é a Senha");
+		
+		if(login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
+		
+		
 		List<Alu> alunos = new ArrayList<Alu>();
 		
 		HashMap<String, List<Alu>> maps = new HashMap<String, List<Alu>>();
@@ -263,7 +270,7 @@ public class primeiro_classe {
 		}*/
 		
 		
-		
+		}
 	}
 
 }
