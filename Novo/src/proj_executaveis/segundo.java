@@ -1,4 +1,4 @@
-package proj;
+package proj_executaveis;
 
 import javax.swing.JOptionPane;
 

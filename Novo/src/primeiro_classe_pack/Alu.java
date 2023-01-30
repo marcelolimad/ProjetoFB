@@ -6,17 +6,11 @@ import java.util.Objects;
 import primeiro_classe_pack.constantes.StatusAlu;
 
 import java.util.*;
-
-public class Alu {
+/* Classo filho de Pessoa*/
+public class Alu extends Pessoa {
 	
 	/* atributos*/
-	public String nome;
-	int idade;
-	String dataNascimento;
-	String registroGeral;
-	String numeroCpf;
-	String nomeMae;
-	String nomePai;
+	
 	String dataMatricula;
 	String nomeEscola;
 	String serieMatricula;
@@ -231,6 +225,12 @@ public class Alu {
 		
 			}
 			
+		}
+
+		@Override
+		public String cor_uniforme() {
+			// TODO Auto-generated method stub
+			return "Azul";
 		}
 		
 }

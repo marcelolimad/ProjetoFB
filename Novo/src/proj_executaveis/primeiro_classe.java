@@ -1,4 +1,4 @@
-package proj;
+package proj_executaveis;
 
 
 import java.util.ArrayList;
@@ -9,17 +9,24 @@ import javax.swing.JOptionPane;
 
 import primeiro_classe_pack.Alu;
 import primeiro_classe_pack.Disciplina;
+import primeiro_classe_pack.Secretario;
 import primeiro_classe_pack.constantes.StatusAlu;
 
 public class primeiro_classe {
 	
 	public static void main (String[]args) {
 		
-		String login = JOptionPane.showInputDialog( "Qual é o Login");
+		String login = JOptionPane.showInputDialog( "Qual Ã© o Login");
 		
-		String senha = JOptionPane.showInputDialog( "Qual é a Senha");
+		String senha = JOptionPane.showInputDialog( "Qual Ã© a Senha");
 		
-		if(login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
+		Secretario secretario = new Secretario();
+		secretario.setLogin(login);
+		secretario.setSenha(senha);
+		
+		/*if(login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin"))*/
+		
+		if(secretario.autenticar()){
 		
 		
 		List<Alu> alunos = new ArrayList<Alu>();
@@ -34,26 +41,26 @@ public class primeiro_classe {
 		
 		for (int qtd = 1 ; qtd <=3; qtd++) {
  		
-		/*objeto ainda não existe na memoria*/
+		/*objeto ainda nï¿½o existe na memoria*/
 		
 		String nome = JOptionPane.showInputDialog("Qual o nome do aluno "+qtd+" ?");
 		/*String idade = JOptionPane.showInputDialog("Qual o idade?");
 		String nascimento = JOptionPane.showInputDialog("Qual a sua data de nascimento?");
-		String matricula = JOptionPane.showInputDialog("Qual é a sua matricula ?");
-		String nota1 = JOptionPane.showInputDialog("Qual é a sua nota1 ?");
-		String disciplina1 = JOptionPane.showInputDialog("Qual é a sua disciplina1 ?");
-		String nota2 = JOptionPane.showInputDialog("Qual é a sua nota2 ?");
-		String disciplina2 = JOptionPane.showInputDialog("Qual é a sua disciplina2 ?");
-		String nota3 = JOptionPane.showInputDialog("Qual é a sua nota3 ?");
-		String disciplina3 = JOptionPane.showInputDialog("Qual é a sua disciplina3 ?");
-		String nota4 = JOptionPane.showInputDialog("Qual é a sua nota4 ?");
-		String disciplina4 = JOptionPane.showInputDialog("Qual é a sua disciplina4 ?");*/
+		String matricula = JOptionPane.showInputDialog("Qual ï¿½ a sua matricula ?");
+		String nota1 = JOptionPane.showInputDialog("Qual ï¿½ a sua nota1 ?");
+		String disciplina1 = JOptionPane.showInputDialog("Qual ï¿½ a sua disciplina1 ?");
+		String nota2 = JOptionPane.showInputDialog("Qual ï¿½ a sua nota2 ?");
+		String disciplina2 = JOptionPane.showInputDialog("Qual ï¿½ a sua disciplina2 ?");
+		String nota3 = JOptionPane.showInputDialog("Qual ï¿½ a sua nota3 ?");
+		String disciplina3 = JOptionPane.showInputDialog("Qual ï¿½ a sua disciplina3 ?");
+		String nota4 = JOptionPane.showInputDialog("Qual ï¿½ a sua nota4 ?");
+		String disciplina4 = JOptionPane.showInputDialog("Qual ï¿½ a sua disciplina4 ?");*/
 		
 		Alu alu1;
 		
 		/*Agora temos objeto real na memoria*/
 		Alu alu2 = new Alu();
-		alu2.nome = "Marc"; 
+		alu2.setNome("Marc");  
 		
 		alu2.setNome(nome);
 		/*alu2.setIdade(Integer.valueOf(idade));
@@ -74,7 +81,7 @@ public class primeiro_classe {
 		System.out.println(alu2.getDataNascimento());
 		System.out.println(alu2.getDataMatricula());
 		System.out.println(alu2.getMediaNota());
-		System.out.println(alu2.getAluAprovado() ? "valeu" :  " não valeu");
+		System.out.println(alu2.getAluAprovado() ? "valeu" :  " nï¿½o valeu");
 		System.out.println(alu2.getAluAprovado2());*/
 		
 		
@@ -144,17 +151,17 @@ public class primeiro_classe {
 		
 		System.out.println("-----------------Lista dos Aprovados------------------");
 		for (Alu alu2 : maps.get(StatusAlu.APROVADO)) {
-			System.out.println("Nome "+ alu2.getNome() + " Resultado = " + alu2.getAluAprovado2() + " com média de " + alu2.getMediaNota());
+			System.out.println("Nome "+ alu2.getNome() + " Resultado = " + alu2.getAluAprovado2() + " com mï¿½dia de " + alu2.getMediaNota());
 		}
 		
-		System.out.println("-----------------Lista dos Recuperação------------------");
+		System.out.println("-----------------Lista dos Recuperaï¿½ï¿½o------------------");
 		for (Alu alu2 : maps.get(StatusAlu.RECUPERACAO)) {
-			System.out.println("Nome "+ alu2.getNome() + " Resultado = " + alu2.getAluAprovado2() + " com média de " + alu2.getMediaNota());
+			System.out.println("Nome "+ alu2.getNome() + " Resultado = " + alu2.getAluAprovado2() + " com mï¿½dia de " + alu2.getMediaNota());
 		}
 		
 		System.out.println("-----------------Lista dos Reprovados------------------");
 		for (Alu alu2 : maps.get(StatusAlu.REPROVADO)) {
-			System.out.println("Nome "+ alu2.getNome() + " Resultado = " + alu2.getAluAprovado2() + " com média de " + alu2.getMediaNota());
+			System.out.println("Nome "+ alu2.getNome() + " Resultado = " + alu2.getAluAprovado2() + " com mï¿½dia de " + alu2.getMediaNota());
 		}
 		
 		/*for (int pos = 0; pos < alunos.size(); pos ++) {
@@ -212,7 +219,7 @@ public class primeiro_classe {
 		for (Alu alu2 : alunos) {
 			System.out.println("Aluno que sobraram na lista");
 			System.out.println(alu2.getNome());
-			System.out.println("Suas meterias são");
+			System.out.println("Suas meterias sï¿½o");
 			
 			for (Disciplina disciplina : alu2.getDisciplinas()){
 				System.out.println(disciplina.getDisciplina());
@@ -270,7 +277,9 @@ public class primeiro_classe {
 		}*/
 		
 		
-		}
+		}else {
+			
+			JOptionPane.showMessageDialog(null, "Acesso negado");		}
 	}
 
 }
