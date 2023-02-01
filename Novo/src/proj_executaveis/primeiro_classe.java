@@ -11,6 +11,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 import classesauxiliares.FuncaoAutenticacao;
+import excecao.ExecaoPrecessada;
 import interfaces.Acesso;
 import primeiro_classe_pack.Alu;
 import primeiro_classe_pack.Diretor;
@@ -25,9 +26,17 @@ public class primeiro_classe {
 		
 		try {
 			
+			lerArquivo();
+			
+			/*try {
+			
 			File file = new File("C://arquivoo.txt");
 			Scanner scanner = new Scanner(file);
-		
+			}catch (FileNotFoundException e) {
+				throw new ExecaoPrecessada("Erro faz outro mané.");			
+				
+			}*/
+			
 		String login = JOptionPane.showInputDialog( "Qual é o Login");
 		
 		String senha = JOptionPane.showInputDialog( "Qual é a Senha");
@@ -319,7 +328,7 @@ public class primeiro_classe {
 			
 			JOptionPane.showMessageDialog(null, " Erro NumberFormatException" + saida);
 			
-		} catch (NullPointerException e) {
+		} catch (ExecaoPrecessada e) {
 	StringBuilder saida = new StringBuilder();
 			
 			e.printStackTrace();
@@ -333,7 +342,7 @@ public class primeiro_classe {
 				saida.append("\n Class: " + e.getClass().getName());
 			}
 			
-			JOptionPane.showMessageDialog(null, " Erro NullPointerExceptionn" + saida);
+			JOptionPane.showMessageDialog(null, " ExecaoPrecessada" + saida);
 			
 			// TODO: handle exception
 		}catch (Exception e) {
@@ -345,4 +354,18 @@ public class primeiro_classe {
 			JOptionPane.showMessageDialog(null, "Valeu");
 		}
 	}
+	
+	public static void lerArquivo() throws ExecaoPrecessada{
+	
+	try {
+		
+		File file = new File("C://arquivoo.txt");
+		Scanner scanner = new Scanner(file);
+		}catch (FileNotFoundException e) {
+			throw new ExecaoPrecessada("Erro faz outro mané.");			
+			
+		}
+	}
 }
+
+
