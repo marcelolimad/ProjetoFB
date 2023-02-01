@@ -1,9 +1,9 @@
 package primeiro_classe_pack;
 
-import interfaces.acesso;
+import interfaces.Acesso;
 
 /* Classo filho de Pessoa*/
-public class Secretario extends Pessoa implements acesso {
+public class Secretario extends Pessoa implements Acesso {
 
 	private String registro;
 	private String nivelCargo;
@@ -11,6 +11,17 @@ public class Secretario extends Pessoa implements acesso {
 	
 	private String login;
 	private String senha;
+	
+	
+	public Secretario(String login, String senha) {
+		this.login = login;
+		this.senha = senha;
+	}
+	
+	public Secretario() {
+		// TODO Auto-generated constructor stub
+	}
+	 
 	
 	public String getRegistro() {
 		return registro;
@@ -51,23 +62,21 @@ public class Secretario extends Pessoa implements acesso {
   }
  
  
-public String getLogin() {
-	return login;
-}
-public void setLogin(String login) {
-	this.login = login;
-}
-public String getSenha() {
-	return senha;
-}
-public void setSenha(String senha) {
-	this.senha = senha;
-}
+
 @Override
 public String cor_uniforme() {
 	// TODO Auto-generated method stub
 	return "Verde";
 }
+
+
+@Override
+public boolean autenticar(String login, String senha) {
+	this.login = login;
+	this.senha = senha;
+	return autenticar();
+}
+
 @Override
 public boolean autenticar() {
 	// TODO Auto-generated method stub

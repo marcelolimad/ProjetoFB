@@ -7,7 +7,10 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import classesauxiliares.FuncaoAutenticacao;
+import interfaces.Acesso;
 import primeiro_classe_pack.Alu;
+import primeiro_classe_pack.Diretor;
 import primeiro_classe_pack.Disciplina;
 import primeiro_classe_pack.Secretario;
 import primeiro_classe_pack.constantes.StatusAlu;
@@ -16,18 +19,28 @@ public class primeiro_classe {
 	
 	public static void main (String[]args) {
 		
-		String login = JOptionPane.showInputDialog( "Qual é o Login");
+		try {
 		
-		String senha = JOptionPane.showInputDialog( "Qual é a Senha");
+		String login = JOptionPane.showInputDialog( "Qual � o Login");
 		
-		Secretario secretario = new Secretario();
-		secretario.setLogin(login);
-		secretario.setSenha(senha);
+		String senha = JOptionPane.showInputDialog( "Qual � a Senha");
+		
+		String logind = JOptionPane.showInputDialog( "Qual � o Login dir");
+		
+		String senhad = JOptionPane.showInputDialog( "Qual � a Senha dir ");
+		
+		
+		
+		Acesso acesso = new Secretario(login, senha);
+		Acesso acessod = new Diretor (logind, senhad);
+		
+		FuncaoAutenticacao autenticacao = new FuncaoAutenticacao(acesso);
+		FuncaoAutenticacao autenticacaod = new FuncaoAutenticacao(acessod);
 		
 		/*if(login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin"))*/
 		
-		if(secretario.autenticar()){
-		
+		if(autenticacao.autenticar() || autenticacaod.autenticar() ){
+	
 		
 		List<Alu> alunos = new ArrayList<Alu>();
 		
@@ -280,6 +293,21 @@ public class primeiro_classe {
 		}else {
 			
 			JOptionPane.showMessageDialog(null, "Acesso negado");		}
-	}
-
+	
+		} catch (Exception e) {
+			StringBuilder saida = new StringBuilder();
+			
+			e.printStackTrace();
+			System.out.println("Mensagem" + e.getMessage());
+			
+			for (int i = 0; i < e.getStackTrace().length; i++) {
+				saida.append(" \n Classe erro" + e.getStackTrace()[i].getClassName());
+				saida.append ("\n  Metodo erro"+ e.getStackTrace()[i].getMethodName());	
+				saida.append ("\n Linha erro"+ e.getStackTrace()[i].getLineNumber());
+			}  
+			JOptionPane.showMessageDialog(null, "Erro" + saida.toString());
+		}
+		
+		
+	}	
 }

@@ -1,11 +1,27 @@
 package primeiro_classe_pack;
 
+import interfaces.Acesso;
+
 /* Classo filho de Pessoa*/
-public class Diretor extends Pessoa{
+public class Diretor extends Pessoa implements Acesso{
 	
 	private String registroEducacao;
 	private int tempoDirecao;
 	private String titulacao;
+	
+	
+	private String login;
+	private String senha;
+	
+	
+	public Diretor (String login, String senha) {
+		this.login = login;
+		this.senha = senha;
+	}
+	
+	public Diretor() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public String getRegistroEducacao() {
 		return registroEducacao;
@@ -38,7 +54,18 @@ public class Diretor extends Pessoa{
 		return "Preto";
 	}
 	
-	
+	@Override
+	public boolean autenticar(String login, String senha) {
+		this.login = login;
+		this.senha = senha;
+		return autenticar();
+	}
+
+	@Override
+	public boolean autenticar() {
+		// TODO Auto-generated method stub
+		return login.equals("dir") && senha.equals("dir");
+	}
 	
 
 }
