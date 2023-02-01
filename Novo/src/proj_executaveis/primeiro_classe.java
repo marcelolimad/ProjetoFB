@@ -11,7 +11,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 import classesauxiliares.FuncaoAutenticacao;
-import excecao.ExecaoPrecessada;
+import excecao.ExecaoProcessada;
 import interfaces.Acesso;
 import primeiro_classe_pack.Alu;
 import primeiro_classe_pack.Diretor;
@@ -26,24 +26,24 @@ public class primeiro_classe {
 		
 		try {
 			
-			lerArquivo();
+			/*lerArquivo();
 			
 			/*try {
 			
 			File file = new File("C://arquivoo.txt");
 			Scanner scanner = new Scanner(file);
 			}catch (FileNotFoundException e) {
-				throw new ExecaoPrecessada("Erro faz outro mané.");			
+				throw new ExecaoPrecessada("Erro faz outro manï¿½.");			
 				
 			}*/
 			
-		String login = JOptionPane.showInputDialog( "Qual é o Login");
+		String login = JOptionPane.showInputDialog( "Qual ï¿½ o Login");
 		
-		String senha = JOptionPane.showInputDialog( "Qual é a Senha");
+		String senha = JOptionPane.showInputDialog( "Qual ï¿½ a Senha");
 		
-		String logind = JOptionPane.showInputDialog( "Qual é o Login dir");
+		String logind = JOptionPane.showInputDialog( "Qual ï¿½ o Login dir");
 		
-		String senhad = JOptionPane.showInputDialog( "Qual é a Senha dir ");
+		String senhad = JOptionPane.showInputDialog( "Qual ï¿½ a Senha dir ");
 		
 		
 		
@@ -68,7 +68,7 @@ public class primeiro_classe {
 		List<Alu> alunosRecuperacao = new ArrayList<Alu>();*/
 		
 		
-		for (int qtd = 1 ; qtd <=3; qtd++) {
+		for (int qtd = 1 ; qtd <=1; qtd++) {
  		
 		/*objeto ainda nï¿½o existe na memoria*/
 		
@@ -161,7 +161,7 @@ public class primeiro_classe {
 		alunos.add(alu2);
 	}
 		
-		maps.put(StatusAlu.APROVADO,new ArrayList<Alu>());
+		maps.put(StatusAlu.APROVADO, new ArrayList<Alu>());
 		maps.put(StatusAlu.RECUPERACAO,new ArrayList<Alu>());
 		maps.put(StatusAlu.REPROVADO,new ArrayList<Alu>());
 		
@@ -328,11 +328,11 @@ public class primeiro_classe {
 			
 			JOptionPane.showMessageDialog(null, " Erro NumberFormatException" + saida);
 			
-		} catch (ExecaoPrecessada e) {
+		} catch (Exception e) {
 	StringBuilder saida = new StringBuilder();
 			
 			e.printStackTrace();
-			
+			System.out.println("Passou aqui");
 			System.out.println("Mensage: " + e.getMessage());
 			
 			for ( int i = 0; i < e.getStackTrace().length; i++) {
@@ -342,30 +342,33 @@ public class primeiro_classe {
 				saida.append("\n Class: " + e.getClass().getName());
 			}
 			
-			JOptionPane.showMessageDialog(null, " ExecaoPrecessada" + saida);
+			JOptionPane.showMessageDialog(null, " ExecaoProcessada" + saida);
 			
 			// TODO: handle exception
-		}catch (Exception e) {
+		}/*catch (Exception e) {
 			System.out.println(e);
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, " Erro normal" + e.toString());
 			
-		}finally {
+		}*/finally {
 			JOptionPane.showMessageDialog(null, "Valeu");
 		}
 	}
 	
-	public static void lerArquivo() throws ExecaoPrecessada{
+	/*public static void lerArquivo() throws FileNotFoundException{
 	
-	try {
+		File file = new File("C://arquivoo.txt");
+		Scanner scanner = new Scanner(file); 
+		
+	/*try {
 		
 		File file = new File("C://arquivoo.txt");
 		Scanner scanner = new Scanner(file);
 		}catch (FileNotFoundException e) {
-			throw new ExecaoPrecessada("Erro faz outro mané.");			
+			throw new ExecaoProcessada(e.getMessage());			
 			
-		}
+		}*/
 	}
-}
+
 
 
