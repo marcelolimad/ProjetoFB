@@ -1,13 +1,19 @@
 package proj_executaveis;
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import classesauxiliares.FuncaoAutenticacao;
+import interfaces.Acesso;
 import primeiro_classe_pack.Alu;
+import primeiro_classe_pack.Diretor;
 import primeiro_classe_pack.Disciplina;
 import primeiro_classe_pack.Secretario;
 import primeiro_classe_pack.constantes.StatusAlu;
@@ -16,20 +22,34 @@ public class primeiro_classe {
 	
 	public static void main (String[]args) {
 		
-		String login = JOptionPane.showInputDialog( "Qual Ã© o Login");
 		
-		String senha = JOptionPane.showInputDialog( "Qual Ã© a Senha");
+		try {
+			
+			File file = new File("C://arquivoo.txt");
+			Scanner scanner = new Scanner(file);
 		
-		Secretario secretario = new Secretario();
-		secretario.setLogin(login);
-		secretario.setSenha(senha);
+		String login = JOptionPane.showInputDialog( "Qual é o Login");
+		
+		String senha = JOptionPane.showInputDialog( "Qual é a Senha");
+		
+		String logind = JOptionPane.showInputDialog( "Qual é o Login dir");
+		
+		String senhad = JOptionPane.showInputDialog( "Qual é a Senha dir ");
+		
+		
+		
+		Acesso acesso = new Secretario(login, senha);
+		Acesso acessod = new Diretor (logind, senhad);
+		
+		FuncaoAutenticacao autenticacao = new FuncaoAutenticacao(acesso);
+		FuncaoAutenticacao autenticacaod = new FuncaoAutenticacao(acessod);
 		
 		/*if(login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin"))*/
 		
-		if(secretario.autenticar()){
+		if(autenticacao.autenticar() || autenticacaod.autenticar() ){
+	
 		
-		
-		List<Alu> alunos = new ArrayList<Alu>();
+			List<Alu> alunos = new ArrayList<Alu>();
 		
 		HashMap<String, List<Alu>> maps = new HashMap<String, List<Alu>>();
 		
@@ -282,4 +302,47 @@ public class primeiro_classe {
 			JOptionPane.showMessageDialog(null, "Acesso negado");		}
 	}
 
+		catch (NumberFormatException e) {
+			
+			StringBuilder saida = new StringBuilder();
+			
+			e.printStackTrace();
+			
+			System.out.println("Mensage: " + e.getMessage());
+			
+			for ( int i = 0; i < e.getStackTrace().length; i++) {
+				saida.append("\n Classe de erro: " + e.getStackTrace()[i].getClassName());
+				saida.append("\n Metado de erro: " + e.getStackTrace()[i].getMethodName());
+				saida.append("\n Metado de erro: " + e.getStackTrace()[i].getLineNumber());
+				saida.append("\n Class: " + e.getClass().getName());
+			}
+			
+			JOptionPane.showMessageDialog(null, " Erro NumberFormatException" + saida);
+			
+		} catch (NullPointerException e) {
+	StringBuilder saida = new StringBuilder();
+			
+			e.printStackTrace();
+			
+			System.out.println("Mensage: " + e.getMessage());
+			
+			for ( int i = 0; i < e.getStackTrace().length; i++) {
+				saida.append("\n Classe de erro: " + e.getStackTrace()[i].getClassName());
+				saida.append("\n Metado de erro: " + e.getStackTrace()[i].getMethodName());
+				saida.append("\n Metado de erro: " + e.getStackTrace()[i].getLineNumber());
+				saida.append("\n Class: " + e.getClass().getName());
+			}
+			
+			JOptionPane.showMessageDialog(null, " Erro NullPointerExceptionn" + saida);
+			
+			// TODO: handle exception
+		}catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, " Erro normal" + e.toString());
+			
+		}finally {
+			JOptionPane.showMessageDialog(null, "Valeu");
+		}
+	}
 }
