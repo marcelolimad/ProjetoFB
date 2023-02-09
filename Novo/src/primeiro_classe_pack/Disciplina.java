@@ -1,18 +1,20 @@
 package primeiro_classe_pack;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Disciplina {
 	
-	/*Essa classe Disciplina servirá para todos os objetos e instancias de notas e materias*/
+	/*Essa classe Disciplina servirï¿½ para todos os objetos e instancias de notas e materias*/
 	
-	private double nota;
+	private double[] nota = new double[4];
 	private String disciplina;
 	
-	public double getNota() {
+	
+	public double[] getNota() {
 		return nota;
 	}
-	public void setNota(double nota) {
+	public void setNota(double[] nota) {
 		this.nota = nota;
 	}
 	public String getDisciplina() {
@@ -21,9 +23,14 @@ public class Disciplina {
 	public void setDisciplina(String disciplina) {
 		this.disciplina = disciplina;
 	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(disciplina, nota);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(nota);
+		result = prime * result + Objects.hash(disciplina);
+		return result;
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -34,8 +41,7 @@ public class Disciplina {
 		if (getClass() != obj.getClass())
 			return false;
 		Disciplina other = (Disciplina) obj;
-		return Objects.equals(disciplina, other.disciplina)
-				&& Double.doubleToLongBits(nota) == Double.doubleToLongBits(other.nota);
+		return Objects.equals(disciplina, other.disciplina) && Arrays.equals(nota, other.nota);
 	}
 	@Override
 	public String toString() {
@@ -127,9 +133,17 @@ public class Disciplina {
 				+ ", disciplina4=" + disciplina4 + "]";
 	}*/
 
-
-		
-	}
+      public double mediaNotas(){
+      double somaTotal = 0;
+      
+      for (int n = 0; n < nota.length; n++) {
+    	  somaTotal += nota[n];
+      }
+      	
+      return somaTotal / nota.length;
+    		  
+      }
+}
 	
 	
 	
