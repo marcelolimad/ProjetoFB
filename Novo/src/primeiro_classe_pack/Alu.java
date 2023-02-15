@@ -149,11 +149,17 @@ public class Alu extends Pessoa {
 		double somaNotas = 0.0;
 		
 		for (Disciplina disciplina: disciplinas) {
-			somaNotas += disciplina.getNota(); 
+			somaNotas += disciplina.mediaNotas(); 
 		}
 		
 	return somaNotas / disciplinas.size();
 	}
+	
+	
+	
+	
+	
+	
 	
 	public boolean getAluAprovado() {
 		double media = this.getMediaNota();
