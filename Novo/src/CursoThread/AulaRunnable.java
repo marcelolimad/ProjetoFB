@@ -1,8 +1,18 @@
 package CursoThread;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import javax.swing.JTextField;
+
+import CursoThread.TelaThread;
 
 public interface AulaRunnable {
 	
+	TelaThread tempo = new TelaThread();
+	
+	
 	public Runnable thread1 = new Runnable() {
+		
 		
 		@Override
 		public void run() {
@@ -60,8 +70,40 @@ public interface AulaRunnable {
 		
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
+			     
+			 while (true) {
+				  
+				tempo.mostrarTempo.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").
+					format(Calendar.getInstance().getTime()));
 			
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+			 }
+		}
+	};
+	public Runnable thread4 = new Runnable() {
+		
+		@Override
+		public void run() {
+			     
+			 while (true) {
+				  
+				tempo.mostrarTempo2.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm").
+					format(Calendar.getInstance().getTime())+" valeu");
+			
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+			 }
 		}
 	};
 	

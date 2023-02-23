@@ -6,6 +6,10 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import CursoThread.AulaRunnable;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -16,15 +20,19 @@ import javax.swing.JTextField;
 public class TelaThread extends JDialog{
 
 	
-	private JPanel  jPanel = new JPanel(new GridBagLayout());
+	public JPanel  jPanel = new JPanel(new GridBagLayout());
 	
-	private JLabel descricaoHora = new JLabel( "Tempo 1 Thread" );
-	private JTextField mostrarTempo = new JTextField();
+	public JLabel descricaoHora = new JLabel( "Tempo 1 Thread" );
+	public JTextField mostrarTempo = new JTextField();
 	
-	private JLabel descricaoHora2 = new JLabel( "Tempo 2 Thread" );
-	private JTextField mostrarTempo2 = new JTextField();
-    private JButton jButton = new JButton("Iniciar"); 
-    private JButton jButton2 = new JButton("Parar"); 
+	public JLabel descricaoHora2 = new JLabel( "Tempo 2 Thread" );
+	public JTextField mostrarTempo2 = new JTextField();
+	public JButton jButton = new JButton("Iniciar"); 
+	public JButton jButton2 = new JButton("Parar"); 
+	
+	
+	private Thread thtime1;
+	private Thread thtime2;
 	
 	
 	
@@ -76,6 +84,35 @@ public class TelaThread extends JDialog{
 			jButton2.setPreferredSize(new Dimension (92, 25));
 			gridBagConstrainsts.gridx ++;
 			jPanel.add(jButton2, gridBagConstrainsts);
+			
+			
+			jButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					thtime1 = new Thread(AulaRunnable.thread3);
+					thtime1.start();
+					
+					thtime2 = new Thread(AulaRunnable.thread4);
+					thtime2.start();
+					
+					jButton.setEnabled(false);
+					jButton2.setEnabled(true);
+				}
+			});
+			
+			jButton2.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					thtime1.stop();
+					thtime2.stop();
+					
+					jButton2.setEnabled(false);
+					jButton.setEnabled(true);
+					
+				}
+			} );
 			
 			add(jPanel, BorderLayout.WEST);
 			

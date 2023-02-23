@@ -3,7 +3,7 @@ package CursoThread;
 import javax.swing.JOptionPane;
 import CursoThread.AulaRunnable;
 
-public class AulaThread  {
+public class AulaThread   {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
