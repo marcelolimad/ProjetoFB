@@ -95,12 +95,14 @@ public class TelaThread extends JDialog{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					
+					for (int q = 0; q < 30; q++) {
+					
 					ObjFilaThread filaThread = new ObjFilaThread();
 					filaThread.setNome(mostrarTempo.getText());
-					filaThread.setEmail(mostrarTempo2.getText());
+					filaThread.setEmail(mostrarTempo2.getText()+" "+ q);
 					
 					fila.add(filaThread);
-					
+					}
 					//jButton.setEnabled(false);
 					//jButton2.setEnabled(true);
 				}
@@ -118,6 +120,7 @@ public class TelaThread extends JDialog{
 				
 					
 					fila.stop();
+					//fila = null;
 				}
 			} );
 	jButton3.addActionListener(new ActionListener() {
@@ -131,6 +134,7 @@ public class TelaThread extends JDialog{
 					//jButton.setEnabled(true);
 				
 					
+					fila = new ImplemetacaoFilaThread();
 					fila.start();
 				}
 			} );
