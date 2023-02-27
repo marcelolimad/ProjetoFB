@@ -30,6 +30,7 @@ public class TelaThread extends JDialog{
 	public JButton jButton = new JButton("Add Lista"); 
 	public JButton jButton2 = new JButton("Parar"); 
 	public JButton jButton3 = new JButton("Iniciar"); 
+	public JButton jButton4 = new JButton("botão4"); 
 	
 	private Thread thtime1;
 	private Thread thtime2;
@@ -39,7 +40,7 @@ public class TelaThread extends JDialog{
 		public TelaThread() {
 			
 			setTitle("Minha Tela");
-			setSize(new Dimension(340, 340));
+			setSize(new Dimension(440, 340));
 			setLocationRelativeTo(null);
 			setResizable(false);
 			//=================================
@@ -48,7 +49,7 @@ public class TelaThread extends JDialog{
 			GridBagConstraints gridBagConstrainsts = new GridBagConstraints();
 			gridBagConstrainsts.gridx = 0;
 			gridBagConstrainsts.gridy = 0;
-			gridBagConstrainsts.gridwidth =2;
+			gridBagConstrainsts.gridwidth =4;
 			gridBagConstrainsts.insets = new Insets(5, 10, 5, 5);
 			gridBagConstrainsts.anchor = GridBagConstraints.WEST;
 			
@@ -56,7 +57,7 @@ public class TelaThread extends JDialog{
 			jPanel.add(descricaoHora, gridBagConstrainsts);
 			
 			
-			mostrarTempo.setPreferredSize(new Dimension(200,25));
+			mostrarTempo.setPreferredSize(new Dimension(400,25));
 			gridBagConstrainsts.gridy ++;
 			//mostrarTempo.setEditable(false);
 			jPanel.add(mostrarTempo, gridBagConstrainsts);
@@ -65,12 +66,12 @@ public class TelaThread extends JDialog{
 			//====================
 			
 			
-			descricaoHora2.setPreferredSize(new Dimension(200, 25));
+			descricaoHora2.setPreferredSize(new Dimension(300, 25));
 			gridBagConstrainsts.gridy ++;
 			jPanel.add(descricaoHora2, gridBagConstrainsts);
 			
 			
-			mostrarTempo2.setPreferredSize(new Dimension(200,25));
+			mostrarTempo2.setPreferredSize(new Dimension(300,25));
 			gridBagConstrainsts.gridy ++;
 			//mostrarTempo2.setEditable(false);
 			jPanel.add(mostrarTempo2, gridBagConstrainsts);
@@ -82,18 +83,28 @@ public class TelaThread extends JDialog{
 			jPanel.add(jButton, gridBagConstrainsts);
 			
 			jButton2.setPreferredSize(new Dimension (92, 25));
-			gridBagConstrainsts.gridy ++;
+			gridBagConstrainsts.gridx ++;
 			jPanel.add(jButton2, gridBagConstrainsts);
 			
 			jButton3.setPreferredSize(new Dimension (92, 25));
 			gridBagConstrainsts.gridx ++;
 			jPanel.add(jButton3, gridBagConstrainsts);
 			
+			jButton4.setPreferredSize(new Dimension (92, 25));
+			gridBagConstrainsts.gridx ++;
+			jPanel.add(jButton4, gridBagConstrainsts);
+			
 			
 			jButton.addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					
+					
+					if(fila == null) {
+						fila = new ImplemetacaoFilaThread();
+						fila.start();
+					}
 					
 					for (int q = 0; q < 30; q++) {
 					
@@ -120,7 +131,7 @@ public class TelaThread extends JDialog{
 				
 					
 					fila.stop();
-					//fila = null;
+					fila = null;
 				}
 			} );
 	jButton3.addActionListener(new ActionListener() {
