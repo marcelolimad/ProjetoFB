@@ -33,11 +33,11 @@ public class Arqs {
 		pessoas.add(pessoa3);
 		
 		
-		//String pasta = System.getProperty("user.home");
+		String pasta = System.getProperty("user.home");
 		
 		//String arquivo = "D:\\Users\\marcelomls\\git\\repository\\Novo\\src\\Arquivos\\arquivo.txt";
 		
-		File arquivo = new File("C:\\Users\\MarceloD\\git\\repository\\Novo\\src\\Arquivos\\arquivo.txt");
+		File arquivo = new File("D:\\Users\\marcelomls\\git\\repository\\Novo\\src\\Arquivos\\arquivo.txt");
 		
 		if(!arquivo.exists()) {
 			arquivo.createNewFile();
@@ -45,7 +45,7 @@ public class Arqs {
 		
 		FileWriter escreverArquivo = new FileWriter(arquivo);
 		
-		/*escreverArquivo.write("Meu arquivo");
+		escreverArquivo.write("Meu arquivo");
 		escreverArquivo.write("\n");
 		escreverArquivo.write("Minha linha 2");
 		escreverArquivo.write("\n");
@@ -55,12 +55,12 @@ public class Arqs {
 			escreverArquivo.write("adcionar numero "+ i + "\n");
 			
 		
-		}*/
+		}
 		
 		for(Pessoa p: pessoas) {
 			
-			//escreverArquivo.write("Nomes" + ";" + p.getNome()+ ";" + " Email " + ";" + p.getEmail() + ";" + "Idade " + ";" +p.getIdade()+ "\n");
-			escreverArquivo.write(p.getNome()+ ";" + p.getEmail() + ";"  +p.getIdade()+ "\n");
+			escreverArquivo.write("Nome: "+p.getNome()+" Email: "+p.getEmail()+" Idade: "+p.getIdade()+"\n");
+			
 		}
 		escreverArquivo.flush();
 		escreverArquivo.close();
