@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -17,7 +18,7 @@ public class Arqs_excel {
 
 		// Apache poi bibliotecas para criar arquivos xls
 
-	    File arquivo = new File("D:\\Users\\marcelomls\\git\\repository\\Novo\\src\\Arquivos\\arquivo_excel.xls");
+	    File arquivo = new File("C:\\Users\\MarceloD\\git\\repository\\Novo\\src\\Arquivos\\arquivo_excel5.xls");
 
 	    if(!arquivo.exists()) {
 	    	arquivo.createNewFile();
@@ -40,7 +41,7 @@ public class Arqs_excel {
 			Pessoa pessoa4 = new Pessoa();
 	        pessoa4.setEmail("teste4@gmail.com");
 	        pessoa4.setNome("teste4");
-			pessoa4.setIdade(41);
+			pessoa4.setIdade(19);
 
 			List<Pessoa> pessoas = new ArrayList<Pessoa>();
 
@@ -53,7 +54,21 @@ public class Arqs_excel {
 			HSSFSheet linhaPessoa = hssfWorkbook.createSheet("Planilha_Java");
 			HSSFSheet linhaNome = hssfWorkbook.getSheet("Planilha_Java");  
 
-			int numeroLinha = 0;
+			int numeroLinha = 2;
+			
+			int c = 0;
+			Row linha2 = linhaPessoa.createRow(numeroLinha = 1); 
+			
+			Cell celNome2 = linha2.createCell(c); 
+			celNome2.setCellValue("NOME");
+			
+			 
+			Cell celEmail2 = linha2.createCell(c); 
+			celEmail2.setCellValue("EMAIL");
+			
+			
+			Cell celIdade2 = linha2.createCell(c); 
+			celIdade2.setCellValue("Idade");
 			
 			for(Pessoa p: pessoas) {
 				
@@ -62,13 +77,17 @@ public class Arqs_excel {
 
 				Row linha = linhaPessoa.createRow(numeroLinha ++);
 				
-			
+			     
 				
 				int celula = 0;
-			
+			 
 				
-				Cell celNome = linha.createCell(celula ++);
+				
+				Cell celNome = linha.createCell( celula ++);
 				celNome.setCellValue(p.getNome());
+				
+				
+				
 				//celNome.setCellValue("Nome");
 
 				Cell celEmail = linha.createCell(celula ++);

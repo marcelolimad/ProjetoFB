@@ -40,6 +40,10 @@ public class Pessoa {
 		Pessoa other = (Pessoa) obj;
 		return Objects.equals(email, other.email) && idade == other.idade && Objects.equals(nome, other.nome);
 	}
+	@Override
+	public String toString() {
+		return "Pessoa [email=" + email + ", nome=" + nome + ", idade=" + idade + "]";
+	}
 	
 	
 	

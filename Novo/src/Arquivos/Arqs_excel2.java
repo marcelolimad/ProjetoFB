@@ -17,7 +17,7 @@ public class Arqs_excel2 {
 
 	public static void main(String[] args) throws IOException {
 		
-		FileInputStream entrada = new FileInputStream(new File ("D:\\Users\\marcelomls\\git\\repository\\Novo\\src\\Arquivos\\arquivo_excel.xls"));
+		FileInputStream entrada = new FileInputStream(new File ("C:\\Users\\MarceloD\\git\\repository\\Novo\\src\\Arquivos\\arquivo_excel.xls"));
 		
 	
 
@@ -45,13 +45,13 @@ public class Arqs_excel2 {
         		switch (cell.getColumnIndex()) {
 			
         		case 0:
-        			pessoa.setNome(cell.getStringCellValue());
+        			pessoa.setNome(cell.getStringCellValue() + 1);
         			break;
         		case 1:
-        			pessoa.setEmail(cell.getStringCellValue());
+        			pessoa.setEmail(cell.getStringCellValue() + 1);
         			break;
         		case 2:
-        			pessoa.setIdade(Double.valueOf(cell.getStringCellValue()).intValue());
+        			pessoa.setIdade(Double.valueOf(cell.getNumericCellValue()).intValue() + 1);
         			break;
         	}
         	
