@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="lib/log4j-api-2.7.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-core-2.20.0.jar"/>
 	<classpathentry kind="lib" path="lib/poi-5.2.3.jar"/>
+	<classpathentry kind="lib" path="lib/gson-2.10.1.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
