@@ -1,23 +1,33 @@
 package Arquivos;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import Arquivos.*;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,6 +39,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
+import Arquivo.ManipularImagem;
 import CursoThread.ImplemetacaoFilaThread;
 import CursoThread.ObjFilaThread;
 
@@ -55,16 +66,41 @@ public class ObjJSON extends JDialog {
 		
 		
 		
-		private  JButton jButton = new JButton("Cadastrar"); 
+		private  JButton jButton = new JButton("Cadastrar API (Dados para Json)"); 
 		private  JButton jButton2 = new JButton("Parar"); 
-		private  JButton jButton3 = new JButton("Iniciar"); 
+		private  JButton jButton3 = new JButton("Enviar"); 
 		private  JButton jButton4 = new JButton("Upload Documentos"); 
 		
 		
 		private Thread JsonThread1;
 		
 		
-		private JsonThread jsonT = new JsonThread();
+		//private JsonThread jsonT = new JsonThread();
+		
+		
+/*public static void upload (String pasta, String nomeDoArquivo, InputStream arquivoCarregado) throws FileNotFoundException { 
+	String caminhoArquivo = pasta + "/" + nomeDoArquivo; 
+	File novoArquivo = new File(caminhoArquivo); 
+	FileOutputStream saida = new FileOutputStream(novoArquivo); 
+	copiar(arquivoCarregado, saida);
+	}
+		
+
+public static void copiar(InputStream origem, OutputStream destino) {
+	
+	int bite = 0; byte[] 
+			tamanhoMaximo = new byte[1024 * 16]; // 8KB
+			try { 
+			// enquanto bytes forem sendo lidos 
+			   while((bite = origem.read(tamanhoMaximo)) >= 0) { 
+			    // pegue o byte lido e escreva no destino 
+			     destino.write(tamanhoMaximo, 0, bite);
+			     } 
+			   } catch (IOException e) { 
+			     // TODO Auto-generated catch block e.printStackTrace();
+			      } 
+			  }*/
+	
 		
 		
 		
@@ -129,13 +165,13 @@ public ObjJSON ()   {
 			
 			gridBagConstrainsts.gridwidth =1;
 			
-			jButton.setPreferredSize(new Dimension (92, 25));
+			jButton.setPreferredSize(new Dimension (300, 25));
 			gridBagConstrainsts.gridy ++;
 			jPanel.add(jButton, gridBagConstrainsts);
 			
 			jButton4.setPreferredSize(new Dimension (300, 25));
 			gridBagConstrainsts.gridy ++;
-			jButton4.setEnabled(false);
+			//jButton4.setEnabled(false);
 			jPanel.add(jButton4, gridBagConstrainsts);
 			
 			jButton2.setPreferredSize(new Dimension (92, 25));
@@ -154,7 +190,7 @@ public ObjJSON ()   {
 			//jPanel.add(jButton4, gridBagConstrainsts);
 		
 			
-			List<User> usuario = new ArrayList<User>();
+			List<User> usuarios = new ArrayList<User>();
 			
 	jButton.addActionListener(new ActionListener()  {
 				
@@ -162,38 +198,41 @@ public ObjJSON ()   {
 				public void actionPerformed(ActionEvent e) {
 								
 					
+				
 					
-						Thread JsonThread1 = new Thread();
+						//Thread JsonThread1 = new Thread();
 						
-						JsonThread1.start();
+						System.out.println("Botão 1");
+						
+						//JsonThread1.start();
 						
 					
 					
 					
-					User usuario1 = new User();
-					usuario1.setNome(campoTextoNome.getText());
-					usuario1.setCpf(campoTextoCPF.getText());
-					usuario1.setLogin(campoTextoLogin.getText());
-					usuario1.setSenha(campoTextoSenha.getText());
+					User usuario = new User();
+					usuario.setNome(campoTextoNome.getText());
+					usuario.setCpf(campoTextoCPF.getText());
+					usuario.setLogin(campoTextoLogin.getText());
+					usuario.setSenha(campoTextoSenha.getText());
 					
 					
-					usuario.add(usuario1);
+					usuarios.add(usuario);
 				
 				
 				
 
-					System.out.println(usuario);
+					System.out.println(usuarios);
 					
 				
 					Gson gson = new GsonBuilder().setPrettyPrinting().create();
 					
 					
 					
-					String listasUser = gson.toJson(usuario);
+					String listasUser = gson.toJson(usuarios);
 					
 					//String listasUser = new Gson().toJson(usuario);
 					
-					System.out.println(listasUser);
+					System.out.println("Lista "+listasUser);
 					
 					
 					
@@ -250,7 +289,7 @@ public ObjJSON ()   {
 				}
 	
 	});
-	jButton2.addActionListener(new ActionListener() {
+	jButton4.addActionListener(new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -259,13 +298,62 @@ public ObjJSON ()   {
 			
 			//jButton2.setEnabled(false);
 			//jButton.setEnabled(true);
-		
+			 JFileChooser fc = new JFileChooser();
+		        int res = fc.showOpenDialog(null);
+
+		        if (res == JFileChooser.APPROVE_OPTION) {
+		            File arquivo = fc.getSelectedFile();
+
+		            try {
+		            	
+		            
+		            
+		            	
+		               BufferedImage imagem = ManipularImagem.setImagemDimensao(arquivo.getAbsolutePath(), 160, 160);
+
+		               // lblImagem.setIcon(new ImageIcon(imagem));
+
+		            } catch (Exception ex) {
+		               // System.out.println(ex.printStackTrace().toString());
+		            }
+
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Voce nao selecionou nenhum arquivo.");
+		        }
 			
-			Thread JsonThread1 = new Thread();
 			
-			JsonThread1.stop();
+			
 			
 		}
+	});
+	
+	
+jButton3.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//Thread thtime1 = new Thread();
+			//thtime1.stop();
+			
+			//jButton2.setEnabled(false);
+			//jButton.setEnabled(true);
+			
+		
+			
+			/*String caminho = getClass().getResource("D:/Users/marcelomls/git/repository/Novo/src/Arquivos").toString().substring(5);
+			
+			     File outputfile = new File(caminho+".pdf");
+			    
+	             //ImageIO.write(PDF, "pdf", outputfile);
+	             //JOptionPane.showMessageDialog(rootPane, "Imagem enviada com sucesso");
+			     System.out.println("Arquivo enviado com sucesso");*/
+	
+	
+			
+			
+		}
+			
+		
 	} );
 			
            
@@ -273,13 +361,12 @@ public ObjJSON ()   {
 			add(jPanel, BorderLayout.WEST);
 			
 			
-			
-			
-			
+		
 			
 			setVisible(true);
 
-	}
+	
+}
 
 }
 
