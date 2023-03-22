@@ -5,16 +5,35 @@ public class Delta {
 		// TODO Auto-generated method stub
 
 		int a = 1;
-		int b = 10;
-		int c = 24;
-		double div = 2*1;
-		int b2 = b*b;
+		int b = 12;
+		int c = -13;
+		int e = 2 * a;
 		
-		double d =  - 4 * a * c;
-		double d2 = b2 - d;
+		int d  = (int) Math.pow(b, 2);
+		int d1 =	 4 * a * c;
+		int d2 = (d - d1);
+		int d3 = d2;
+		System.out.println(d3);
 		
-		double x1 = -b + d / div;
+		double x =  -b + Math.sqrt(d3);
 		
+		double x1 = x / e;
+		System.out.println(x1);
+		//double x2 = x1 
+		
+		double y = -b - Math.sqrt(d3);
+		
+		double y1 = y / e;
+		System.out.println(y1);
+		//double y2 = y1 
+		
+		//System.out.println(x2+"-------"+y2);
+		
+		//double r = Math.sqrt(d2);
+		
+		//int x = (int) Math.pow(3, 3);
+		
+		//System.out.println(x);
 		
 		/*(ax2 + bx + c = 0)
 
