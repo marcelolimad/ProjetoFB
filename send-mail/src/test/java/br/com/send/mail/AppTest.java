@@ -20,53 +20,35 @@ import org.junit.Test;
  */
 public class AppTest {
  
+
 	
-	private String userName = "projetotestejava995@gmail.com";
-	
-	private String senha = "jkayfallebczscgm";
 	
 	
 	@org.junit.Test
-	public void testeEmail() {
+	public void testeEmail() throws Exception {
 		
 		//Olha as configurações do seu email
 		
-		try {
+		StringBuilder stringBuilderTextoEmail = new StringBuilder();
 		
-		Properties properties = new Properties();
-		properties.put("mail.smtp.auth", "true"); //Autorização
-		properties.put("mail.smtp.starttls","true"); // Autenticação
-		properties.put("mail.smtp.host","smtp.gmail.com"); // Servidor gmail Google
-		properties.put("mail.smtp.port","465"); // Porta do servidor
-		properties.put("mail.smtp.socketFactory.port","465"); // Expecifica a porta a ser conectada pelo socket
-		properties.put("mail.smtp.socketFactory.class","javax.net.ssl;SSLSocketFactory"); // Classe socket de conexão ao SMTP
+		stringBuilderTextoEmail.append("Olá, <br/><br/>");
+		stringBuilderTextoEmail.append("<h2>Você está recebendo um email com html</h2> <br/><br/>");
+		stringBuilderTextoEmail.append("Click no botão abaixo.<br/><br/>");
+		stringBuilderTextoEmail.append("<br>Login:</br> blablabla.com<br/>");
+		stringBuilderTextoEmail.append("<br>Senha:</br> blablab<br/><br/>");
 		
-		Session session = Session.getInstance(properties, new Authenticator() {
-		
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(userName, senha);
-				
-			}
-		
-		});
+		stringBuilderTextoEmail.append("<a target=\"_blank\" href=\"http://localhost:8080/ProjetoTeste/projSquare.html\" style=\"color: #2525a7; padding: 14px 25px; text-align: center; text-decoration: none; display: inline-block; border-radius: 30px; font-size: 20px; font-family: courier; border: 3px solid blue; background-color: #99DA39; font-weight: 900;\">Acessar o site</a><br/><br/>");
+		stringBuilderTextoEmail.append("<span style=\"font-size:12px\">Ass: Marcelo Lima </span>");
+	  //stringBuilderTextoEmail.append("<a target=\"_blank\" href=\"http://localhost:8080/ProjetoTeste/projSquare.html\" style=\"color: #2525A7; padding: 14px 25px; text-align: center; text-decoration: none; display: inline-block; border-radius: 30px; font-size: 20px; font-family: courier; border: 3px solid green; background-color: #99DA39; font-weight: 900;\">Acessar o site 2</a><br/><br/>");
 		
 		
-		System.out.println(senha);
+		ObjSendEmail enviaEmail = new ObjSendEmail("marcelolimad@gmail.com,projetotestejava995@gmail.com", 
+				" Marcelo Lima - Java", "Email com Anexo",
+				stringBuilderTextoEmail.toString());
 		
-		Address[] toUser = InternetAddress.parse("marcelolimad@gmail.com, marcelomls@fab.mil.br, projetotestejava995@gmail.com");
+		//enviaEmail.sendEmail(true);
+		enviaEmail.sendEmailAnexo(true);
 		
-		Message  msg = new MimeMessage(session);
-		msg.setFrom(new InternetAddress(userName));
-		msg.setRecipients(Message.RecipientType.TO, toUser);
-		msg.setSubject("Chegou email automatiza java (autor, desenvolvedor Ten Marcelo)");
-		msg.setText("olá meu amigo, tá no hora de automatizar tudo");
-
-		Transport.send(msg);
-		
-		
-		}catch(Exception e){
-			e.printStackTrace();
-		}
 	}
 	
 }
